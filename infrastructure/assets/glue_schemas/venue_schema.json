@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Venue schema",
+    "properties": {
+        "venueid": {
+            "$id": "#/properties/venueid",
+            "type": "integer",
+            "title": "The venueid schema field."
+        },
+        "venuename": {
+            "$id": "#/properties/venuename",
+            "type": "string",
+            "title": "The venuename schema field."
+        },
+        "venuecity": {
+            "$id": "#/properties/venuecity",
+            "type": "string",
+            "title": "The venuecity schema field."
+        },
+        "venuestate": {
+            "$id": "#/properties/venuestate",
+            "type": "string",
+            "title": "The venuestate schema field."
+        },
+        "venueseats": {
+            "$id": "#/properties/venueseats",
+            "type": "string",
+            "title": "The venueseats schema field."
+        }
+    }
+}

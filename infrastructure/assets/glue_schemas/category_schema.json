@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Category schema",
+    "properties": {
+        "catid": {
+            "$id": "#/properties/catid",
+            "type": "integer",
+            "title": "The catid schema field."
+        },
+        "catgroup": {
+            "$id": "#/properties/catgroup",
+            "type": "integer",
+            "title": "The catgroup schema field."
+        },
+        "catname": {
+            "$id": "#/properties/catname",
+            "type": "integer",
+            "title": "The catname schema field."
+        },
+        "catdesc": {
+            "$id": "#/properties/catdesc",
+            "type": "string",
+            "title": "The catdesc schema field."
+        }
+    }
+}

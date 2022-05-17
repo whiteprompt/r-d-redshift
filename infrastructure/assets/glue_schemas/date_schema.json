@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Date schema",
+    "properties": {
+        "dateid": {
+            "$id": "#/properties/dateid",
+            "type": "integer",
+            "title": "The dateid schema field."
+        },
+        "caldate": {
+            "$id": "#/properties/caldate",
+            "type": "string",
+            "format": "date",
+            "title": "The caldate schema field."
+        },
+        "day": {
+            "$id": "#/properties/day",
+            "type": "string",
+            "title": "The day schema field."
+        },
+        "week": {
+            "$id": "#/properties/week",
+            "type": "integer",
+            "title": "The week schema field."
+        },
+        "month": {
+            "$id": "#/properties/month",
+            "type": "string",
+            "title": "The month schema field."
+        },
+        "qtr": {
+            "$id": "#/properties/qtr",
+            "type": "integer",
+            "title": "The qtr schema field."
+        },
+        "year": {
+            "$id": "#/properties/year",
+            "type": "number",
+            "title": "The year schema field."
+        },
+        "holiday": {
+            "$id": "#/properties/holiday",
+            "type": "boolean",
+            "title": "The holiday schema field."
+        }
+    }
+}

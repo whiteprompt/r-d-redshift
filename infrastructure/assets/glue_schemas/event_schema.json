@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Events schema",
+    "properties": {
+        "eventid": {
+            "$id": "#/properties/eventid",
+            "type": "integer",
+            "title": "The eventid schema field."
+        },
+        "venueid": {
+            "$id": "#/properties/venueid",
+            "type": "integer",
+            "title": "The venueid schema field."
+        },
+        "catid": {
+            "$id": "#/properties/catid",
+            "type": "integer",
+            "title": "The catid schema field."
+        },
+        "dateid": {
+            "$id": "#/properties/dateid",
+            "type": "integer",
+            "title": "The dateid schema field."
+        },
+        "eventname": {
+            "$id": "#/properties/eventname",
+            "type": "string",
+            "title": "The eventname schema field."
+        },
+        "starttime": {
+            "$id": "#/properties/starttime",
+            "type": "integer",
+            "format": "date-time",
+            "title": "The starttime schema field."
+        }
+    }
+}

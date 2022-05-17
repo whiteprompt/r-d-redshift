@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Sales schema",
+    "properties": {
+        "salesid": {
+            "$id": "#/properties/salesid",
+            "type": "integer",
+            "title": "The salesid schema field."
+        },
+        "listid": {
+            "$id": "#/properties/listid",
+            "type": "integer",
+            "title": "The listid schema field."
+        },
+        "sellerid": {
+            "$id": "#/properties/sellerid",
+            "type": "integer",
+            "title": "The sellerid schema field."
+        },
+        "buyerid": {
+            "$id": "#/properties/buyerid",
+            "type": "integer",
+            "title": "The buyerid schema field."
+        },
+        "eventid": {
+            "$id": "#/properties/eventid",
+            "type": "integer",
+            "title": "The eventid schema field."
+        },
+        "dateid": {
+            "$id": "#/properties/dateid",
+            "type": "integer",
+            "title": "The dateid schema field."
+        },
+        "qtysold": {
+            "$id": "#/properties/qtysold",
+            "type": "integer",
+            "title": "The qtysold schema field."
+        },
+        "pricepaid": {
+            "$id": "#/properties/pricepaid",
+            "type": "number",
+            "title": "The pricepaid schema field."
+        },
+        "commission": {
+            "$id": "#/properties/commission",
+            "type": "number",
+            "title": "The commission schema field."
+        },
+        "saletime": {
+            "$id": "#/properties/saletime",
+            "type": "string",
+            "format": "date-time",
+            "title": "The saletime schema field."
+        }
+    }
+}

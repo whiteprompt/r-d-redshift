@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Users schema",
+    "properties": {
+        "userid": {
+            "$id": "#/properties/userid",
+            "type": "integer",
+            "title": "The userid schema field."
+        },
+        "username": {
+            "$id": "#/properties/username",
+            "type": "string",
+            "title": "The username schema field."
+        },
+        "firstname": {
+            "$id": "#/properties/firstname",
+            "type": "string",
+            "title": "The firstname schema field."
+        },
+        "lastname": {
+            "$id": "#/properties/lastname",
+            "type": "string",
+            "title": "The lastname schema field."
+        },
+        "city": {
+            "$id": "#/properties/city",
+            "type": "string",
+            "title": "The city schema field."
+        },
+        "state": {
+            "$id": "#/properties/state",
+            "type": "string",
+            "title": "The state schema field."
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "format": "idn-email",
+            "title": "The email schema field."
+        },
+        "phone": {
+            "$id": "#/properties/phone",
+            "type": "string",
+            "title": "The phone schema field."
+        },
+        "likesports": {
+            "$id": "#/properties/likesports",
+            "type": "boolean",
+            "title": "The likesports schema field."
+        },
+        "liketheatre": {
+            "$id": "#/properties/liketheatre",
+            "type": "boolean",
+            "title": "The liketheatre schema field."
+        },
+        "likeconcerts": {
+            "$id": "#/properties/likeconcerts",
+            "type": "boolean",
+            "title": "The likeconcerts schema field."
+        },
+        "likejazz": {
+            "$id": "#/properties/likejazz",
+            "type": "boolean",
+            "title": "The likejazz schema field."
+        },
+        "likeclassical": {
+            "$id": "#/properties/likeclassical",
+            "type": "boolean",
+            "title": "The likeclassical schema field."
+        },
+        "likeopera": {
+            "$id": "#/properties/likeopera",
+            "type": "boolean",
+            "title": "The likeopera schema field."
+        },
+        "likerock": {
+            "$id": "#/properties/likerock",
+            "type": "boolean",
+            "title": "The likerock schema field."
+        },
+        "likevegas": {
+            "$id": "#/properties/likevegas",
+            "type": "boolean",
+            "title": "The likevegas schema field."
+        },
+        "likebroadway": {
+            "$id": "#/properties/likebroadway",
+            "type": "boolean",
+            "title": "The likebroadway schema field."
+        },
+        "likemusicals": {
+            "$id": "#/properties/likemusicals",
+            "type": "boolean",
+            "title": "The likemusicals schema field."
+        }
+    }
+}

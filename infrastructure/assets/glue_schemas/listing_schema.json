@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The Listings schema",
+    "properties": {
+        "listid": {
+            "$id": "#/properties/listid",
+            "type": "integer",
+            "title": "The listid schema field."
+        },
+        "sellerid": {
+            "$id": "#/properties/sellerid",
+            "type": "integer",
+            "title": "The sellerid schema field."
+        },
+        "eventid": {
+            "$id": "#/properties/eventid",
+            "type": "integer",
+            "title": "The eventid schema field."
+        },
+        "dateid": {
+            "$id": "#/properties/dateid",
+            "type": "integer",
+            "title": "The dateid schema field."
+        },
+        "numtickets": {
+            "$id": "#/properties/numtickets",
+            "type": "integer",
+            "title": "The numtickets schema field."
+        },
+        "priceperticket": {
+            "$id": "#/properties/priceperticket",
+            "type": "number",
+            "title": "The priceperticket schema field."
+        },
+        "totalprice": {
+            "$id": "#/properties/totalprice",
+            "type": "number",
+            "title": "The totalprice schema field."
+        },
+        "listtime": {
+            "$id": "#/properties/listtime",
+            "type": "string",
+            "format": "date-time",
+            "title": "The listtime schema field."
+        }
+    }
+}
