@@ -104,10 +104,10 @@ variable "category_schema_json" {
   default = "assets/glue_schemas/category_schema.json"
 }
 
-variable "date_schema_json" {
+variable "tbldate_schema_json" {
   type        = string
   description = "A JSON file with the schema definition."
-  default = "assets/glue_schemas/date_schema.json"
+  default = "assets/glue_schemas/tbldate_schema.json"
 }
 
 variable "event_schema_json" {

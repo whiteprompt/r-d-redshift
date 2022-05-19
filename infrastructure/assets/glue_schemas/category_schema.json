@@ -10,12 +10,12 @@
         },
         "catgroup": {
             "$id": "#/properties/catgroup",
-            "type": "integer",
+            "type": "string",
             "title": "The catgroup schema field."
         },
         "catname": {
             "$id": "#/properties/catname",
-            "type": "integer",
+            "type": "string",
             "title": "The catname schema field."
         },
         "catdesc": {

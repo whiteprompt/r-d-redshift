@@ -30,12 +30,12 @@
         },
         "priceperticket": {
             "$id": "#/properties/priceperticket",
-            "type": "number",
+            "type": "integer",
             "title": "The priceperticket schema field."
         },
         "totalprice": {
             "$id": "#/properties/totalprice",
-            "type": "number",
+            "type": "integer",
             "title": "The totalprice schema field."
         },
         "listtime": {

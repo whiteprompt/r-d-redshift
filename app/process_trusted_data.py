@@ -15,7 +15,7 @@ category_schema = {
     "catname": "string",
     "catdesc": "string"
 }
-date_schema = {
+tbldate_schema = {
     "dateid": "int",
     "caldate": "string",
     "day": "string",
@@ -39,8 +39,8 @@ listing_schema = {
     "eventid": "int",
     "dateid": "int",
     "numtickets": "int",
-    "priceperticket": "float64",
-    "totalprice": "float64",
+    "priceperticket": "int",
+    "totalprice": "int",
     "listtime": "datetime64"
 }
 sales_schema = {
@@ -52,7 +52,7 @@ sales_schema = {
     "dateid": "int",
     "qtysold": "int",
     "pricepaid": "int",
-    "commission": "float64",
+    "commission": "int",
     "saletime": "datetime64"
 }
 user_schema = {
@@ -89,7 +89,7 @@ table_conf = [
         "sep": "|"
     },
     {
-        "name": "date",
+        "name": "tbldate",
         "sep": "|"
     },
     {
@@ -157,7 +157,7 @@ def load_redshift_spectrum():
         LEFT JOIN wp_trusted_redshift.user AS u1 ON u1.userid = s.sellerid
         LEFT JOIN wp_trusted_redshift.user AS u2 ON u2.userid = s.buyerid
         LEFT JOIN wp_trusted_redshift.event AS e ON e.eventid = s.eventid
-        LEFT JOIN wp_trusted_redshift.date AS d ON d.dateid = s.dateid
+        LEFT JOIN wp_trusted_redshift.tbldate AS d ON d.dateid = s.dateid
         LEFT JOIN cat AS c ON c.eventid = s.eventid;)
         """
 
@@ -188,7 +188,7 @@ def load_redshift_spectrum():
         LEFT JOIN wp_trusted_redshift.users AS u1 ON u1.userid = s.sellerid
         LEFT JOIN wp_trusted_redshift.users AS u2 ON u2.userid = s.buyerid
         LEFT JOIN wp_trusted_redshift.event AS e ON e.eventid = s.eventid
-        LEFT JOIN wp_trusted_redshift.date AS d ON d.dateid = s.dateid
+        LEFT JOIN wp_trusted_redshift.tbldate AS d ON d.dateid = s.dateid
         LEFT JOIN cat AS c ON c.eventid = s.eventid;)
         """
         

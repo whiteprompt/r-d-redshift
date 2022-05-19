@@ -11,6 +11,14 @@ resource "aws_glue_catalog_database" "aws_glue_database_trusted" {
   name = "${var.trusted_db}"
 }
 
+resource "aws_glue_schema" "tbldate" {
+  schema_name       = "tbldate"
+  registry_arn      = aws_glue_registry.glue_registry.arn
+  data_format       = "JSON"
+  compatibility     = "FULL_ALL"
+  schema_definition = file(var.tbldate_schema_json)
+}
+
 resource "aws_glue_schema" "event" {
   schema_name       = "event"
   registry_arn      = aws_glue_registry.glue_registry.arn
@@ -57,6 +65,41 @@ resource "aws_glue_schema" "venue" {
   data_format       = "JSON"
   compatibility     = "FULL_ALL"
   schema_definition = file(var.venue_schema_json)
+}
+
+resource "aws_glue_catalog_table" "aws_glue_table_tbldate_trusted" {
+  name          = "${aws_glue_schema.event.schema_name}"
+  database_name = "${aws_glue_catalog_database.aws_glue_database_trusted.name}"
+
+  parameters = {
+    EXTERNAL          = "TRUE"
+    "classification"  = "parquet"
+  }
+
+  storage_descriptor {
+    location      = "s3://${var.s3_bucket_name}/trusted/${aws_glue_schema.tbldate.schema_name}/"
+    input_format  = "${var.storage_input_format}"
+    output_format = "${var.storage_output_format}"
+
+    ser_de_info {
+      name                  = "${var.serde_name}"
+      serialization_library = "${var.serde_library}"
+
+      parameters = {
+        "serialization.format" = 1
+        "parquet.compression"  = "SNAPPY"
+      }
+    }
+
+    schema_reference {
+      schema_id {
+        registry_name = "${aws_glue_registry.glue_registry.registry_name}"
+        schema_name   = "${aws_glue_schema.tbldate.schema_name}"
+      }
+      schema_version_number = "${var.schema_version_number}"
+
+    }
+  }
 }
 
 
