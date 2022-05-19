@@ -1,5 +1,5 @@
 resource "aws_redshift_subnet_group" "lakehouse_subnet_grp" {
-  name = "${var.redshift_cluster_name}_subnet_group"
+  name = "${var.redshift_cluster_name}-subnet-group"
 
   subnet_ids = [
     "${var.subnet_id}"
@@ -7,7 +7,7 @@ resource "aws_redshift_subnet_group" "lakehouse_subnet_grp" {
 }
 
 resource "aws_redshift_parameter_group" "lakehouse_param_grp" {
-  name   = "${var.redshift_cluster_name}_parameter_group"
+  name   = "${var.redshift_cluster_name}-parameter-group"
   family = "redshift-1.0"
 
   parameter {
