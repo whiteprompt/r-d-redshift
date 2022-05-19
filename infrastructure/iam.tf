@@ -47,12 +47,12 @@ data "aws_iam_policy_document" "redshift_role_policy" {
 }
 
 resource "aws_iam_role" "lakehouse_role" {
-  name               = "${var.redshift_cluster_name}_redshift_role"
+  name               = "${var.redshift_cluster_name}-redshift-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy_redshift.json
 }
 
 resource "aws_iam_role_policy" "lakehouse_policy" {
-  name   = "${var.redshift_cluster_name}_redshift_policy"
+  name   = "${var.redshift_cluster_name}-redshift-policy"
   role   = aws_iam_role.lakehouse_role.id
   policy = data.aws_iam_policy_document.redshift_role_policy.json
 }
@@ -107,12 +107,12 @@ data "aws_iam_policy_document" "glue_role_policy" {
 }
 
 resource "aws_iam_role" "glue" {
-  name               = "${var.redshift_cluster_name}_glue_role"
+  name               = "${var.redshift_cluster_name}-glue-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy_glue.json
 }
 
 resource "aws_iam_role_policy" "glue_role_policy" {
-  name   = "${var.redshift_cluster_name}_glue_policy"
+  name   = "${var.redshift_cluster_name}-glue-policy"
   role   = aws_iam_role.glue.id
   policy = data.aws_iam_policy_document.glue_role_policy.json
 }

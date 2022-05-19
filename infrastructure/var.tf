@@ -51,7 +51,7 @@ variable "s3_bucket_name" {
 
 variable "redshift_cluster_name" {
   description = "Redshift cluster name"
-  default = "WP_Lakehouse_Spectrum_POC"
+  default = "wp-lakehouse-spectrum-poc"
 }
 
 variable "redshift_db_name" {

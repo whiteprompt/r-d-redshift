@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "lakehouse_poc_sg" {
-  name   = "${var.redshift_cluster_name}_sg"
+  name   = "${var.redshift_cluster_name}-sg"
   vpc_id = "${var.vpc_id}"
 
   ingress {
