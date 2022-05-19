@@ -7,6 +7,11 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "region_az" {
+  description = "The AWS region we want to deploy our services."
+  default     = "us-east-1a"
+}
+
 variable "key_name" {
   default = "data-mgmt"
 }

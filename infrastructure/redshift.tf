@@ -37,7 +37,7 @@ resource "aws_redshift_cluster" "lakehouse_poc" {
   preferred_maintenance_window        = "sun:00:00-sun:00:30"
   publicly_accessible                 = true
   skip_final_snapshot                 = true
-  availability_zone                   = "${var.region}"
+  availability_zone                   = "${var.region_az}"
 
   cluster_subnet_group_name    = "${aws_redshift_subnet_group.lakehouse_subnet_grp.name}"
   cluster_parameter_group_name = "${aws_redshift_parameter_group.lakehouse_param_grp.name}"

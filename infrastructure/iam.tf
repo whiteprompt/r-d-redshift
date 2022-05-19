@@ -41,7 +41,7 @@ data "aws_iam_policy_document" "redshift_role_policy" {
       "s3:List*"
     ]
     resources = [
-      "arn:aws:s3::${data.aws_caller_identity.current.account_id}:${var.s3_bucket_name}/*"
+      "arn:aws:s3:::${var.s3_bucket_name}/*"
     ]
   }
 }
@@ -81,7 +81,7 @@ data "aws_iam_policy_document" "glue_role_policy" {
       "s3:List*"
     ]
     resources = [
-     "arn:aws:s3::${data.aws_caller_identity.current.account_id}:${var.s3_bucket_name}/*"
+     "arn:aws:s3:::${var.s3_bucket_name}/*"
     ]
   }
 
