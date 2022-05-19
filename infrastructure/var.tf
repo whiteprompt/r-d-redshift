@@ -135,6 +135,12 @@ variable "venue_schema_json" {
   default = "assets/glue_schemas/venue_schema.json"
 }
 
+variable "schema_version_number" {
+  type        = number
+  description = "The common version number of schemas."
+  default     = 1
+}
+
 
 variable "storage_input_format" {
   description = "Storage input format class for aws glue for parcing data."
