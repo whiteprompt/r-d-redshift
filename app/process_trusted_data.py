@@ -133,7 +133,7 @@ def load_redshift_spectrum():
     try:
         con = wr.redshift.connect(connection="wp-lakehouse-redshift")
         query_tickit_sales_by_category = f"""
-        CREATE TABLE lakehouse_poc.tickit_sales_by_category AS (WITH cat AS (
+        CREATE TABLE public.tickit_sales_by_category AS (WITH cat AS (
         SELECT DISTINCT e.eventid,
             c.catgroup,
             c.catname
@@ -162,7 +162,7 @@ def load_redshift_spectrum():
         """
 
         query_tickit_sales_by_date = f"""
-        CREATE TABLE lakehouse_poc.tickit_sales_by_date AS (WITH cat AS (
+        CREATE TABLE public.tickit_sales_by_date AS (WITH cat AS (
         SELECT DISTINCT e.eventid,
             c.catgroup,
             c.catname
