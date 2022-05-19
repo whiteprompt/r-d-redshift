@@ -275,4 +275,12 @@ resource "aws_glue_catalog_table" "aws_glue_table_venue_trusted" {
   }
 }
 
+resource "aws_glue_connection" "glue_redshift_conn" {
+  connection_properties = {
+    JDBC_CONNECTION_URL = "jdbc:redshift://${aws_redshift_cluster.lakehouse_poc.endpoint}/${var.redshift_db_name}"
+    PASSWORD            = "${var.redshift_admin_user_password}"
+    USERNAME            = "${var.redshift_admin_user_name}"
+  }
 
+  name = "wp-lakehouse-redshift"
+}
