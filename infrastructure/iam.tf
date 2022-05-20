@@ -57,6 +57,11 @@ resource "aws_iam_role_policy" "lakehouse_policy" {
   policy = data.aws_iam_policy_document.redshift_role_policy.json
 }
 
+resource "aws_iam_policy_attachment" "lakehouse-attach" {
+  name       = "lakehouse-attachment"
+  roles      = [aws_iam_role.lakehouse_role.name]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
+}
 
 #####################################
 # Glue

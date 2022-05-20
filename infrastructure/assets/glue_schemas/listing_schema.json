@@ -30,17 +30,18 @@
         },
         "priceperticket": {
             "$id": "#/properties/priceperticket",
-            "type": "integer",
+            "type": "number",
             "title": "The priceperticket schema field."
         },
         "totalprice": {
             "$id": "#/properties/totalprice",
-            "type": "integer",
+            "type": "number",
             "title": "The totalprice schema field."
         },
         "listtime": {
             "$id": "#/properties/listtime",
             "type": "string",
+            "format": "date-time",
             "title": "The listtime schema field."
         }
     }

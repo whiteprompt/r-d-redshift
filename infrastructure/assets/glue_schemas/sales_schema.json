@@ -40,17 +40,18 @@
         },
         "pricepaid": {
             "$id": "#/properties/pricepaid",
-            "type": "integer",
+            "type": "number",
             "title": "The pricepaid schema field."
         },
         "commission": {
             "$id": "#/properties/commission",
-            "type": "integer",
+            "type": "number",
             "title": "The commission schema field."
         },
         "saletime": {
             "$id": "#/properties/saletime",
             "type": "string",
+            "format": "date-time",
             "title": "The saletime schema field."
         }
     }

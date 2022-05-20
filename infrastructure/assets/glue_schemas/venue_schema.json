@@ -25,7 +25,7 @@
         },
         "venueseats": {
             "$id": "#/properties/venueseats",
-            "type": "string",
+            "type": "integer",
             "title": "The venueseats schema field."
         }
     }
