@@ -51,7 +51,6 @@
         "saletime": {
             "$id": "#/properties/saletime",
             "type": "string",
-            "format": "date-time",
             "title": "The saletime schema field."
         }
     }

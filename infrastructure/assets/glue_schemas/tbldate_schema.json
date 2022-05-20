@@ -11,7 +11,6 @@
         "caldate": {
             "$id": "#/properties/caldate",
             "type": "string",
-            "format": "date",
             "title": "The caldate schema field."
         },
         "day": {
@@ -36,7 +35,7 @@
         },
         "year": {
             "$id": "#/properties/year",
-            "type": "number",
+            "type": "integer",
             "title": "The year schema field."
         },
         "holiday": {

@@ -41,7 +41,6 @@
         "listtime": {
             "$id": "#/properties/listtime",
             "type": "string",
-            "format": "date-time",
             "title": "The listtime schema field."
         }
     }

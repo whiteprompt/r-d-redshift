@@ -31,8 +31,8 @@ event_schema = {
     "catid": "int",
     "dateid": "int",
     "eventname": "string",
-    "starttime": "datetime64"
-}
+    "starttime": "string"
+} 
 listing_schema = {
     "listid": "int",
     "sellerid": "int",
@@ -41,7 +41,7 @@ listing_schema = {
     "numtickets": "int",
     "priceperticket": "int",
     "totalprice": "int",
-    "listtime": "datetime64"
+    "listtime": "string"
 }
 sales_schema = {
     "salesid": "int",
@@ -52,8 +52,7 @@ sales_schema = {
     "dateid": "int",
     "qtysold": "int",
     "pricepaid": "int",
-    "commission": "int",
-    "saletime": "datetime64"
+    "saletime": "datetime"
 }
 user_schema = {
     "userid": "int",
@@ -118,14 +117,26 @@ table_conf = [
 def process_trusted_data(raw_path, trusted_path):
     try:
         for table in table_conf:
-            df_table = wr.s3.read_csv(f"{raw_path}{table['name']}/", sep=f"{table['sep']}", dtype = exec(f"{table['name']}_schema"))
-            log.info(f"Writing data to {trusted_path}{table['name']}/")
-            wr.s3.to_parquet(
-                df=df_table,
-                path=f"{trusted_path}{table['name']}/",
-                dataset=True,
-                mode="append"
-            )
+            if table['name'] == "sales":
+                df_table = wr.s3.read_csv(f"{raw_path}{table['name']}/", sep=f"{table['sep']}", use_threads=True, dtype = exec(f"{table['name']}_schema"))
+                df_table['commission'] = df_table['commission'].astype(int)
+                log.info(f"Writing data to {trusted_path}{table['name']}/")
+                wr.s3.to_parquet(
+                    df=df_table,
+                    path=f"{trusted_path}{table['name']}/",
+                    dataset=True,
+                    mode="append"
+                )
+            else:
+                df_table = wr.s3.read_csv(f"{raw_path}{table['name']}/", sep=f"{table['sep']}", use_threads=True, dtype = exec(f"{table['name']}_schema"))
+                log.info(f"Writing data to {trusted_path}{table['name']}/")
+                wr.s3.to_parquet(
+                    df=df_table,
+                    path=f"{trusted_path}{table['name']}/",
+                    dataset=True,
+                    mode="append"
+                )
+
     except Exception as e:
         log.error(f"Fail to process data from '{raw_path}' to '{trusted_path}': {str(e)}")
 
