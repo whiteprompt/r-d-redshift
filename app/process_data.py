@@ -146,7 +146,7 @@ def load_redshift_spectrum():
         create external schema wp_spectrum
         from data catalog
         database 'wp_trusted_redshift'
-        iam_role 'arn:aws:iam:::role/wp-lakehouse-spectrum-poc-redshift-role'
+        iam_role 'arn:aws:iam::930170203968:role/wp-lakehouse-spectrum-poc-redshift-role'
         """
         query_tickit_sales_by_category = f"""
         CREATE TABLE public.tickit_sales_by_category AS (WITH cat AS (
