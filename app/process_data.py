@@ -3,7 +3,7 @@ import sys
 import argparse
 import utils
 import pyspark.sql.functions as F
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType, TimestampType, BooleanType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType, BooleanType
 from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
 from distutils.util import strtobool
@@ -40,7 +40,7 @@ event_schema = StructType([
     StructField("catid", IntegerType(), True),
     StructField("dateid", IntegerType(), True),
     StructField("eventname", StringType(), True),
-    StructField("starttime", TimestampType(), True)])
+    StructField("starttime", StringType(), True)])
 
 listing_schema = StructType([
     StructField("listid", IntegerType(), True),
@@ -50,7 +50,7 @@ listing_schema = StructType([
     StructField("numtickets", IntegerType(), True),
     StructField("priceperticket", FloatType(), True),
     StructField("totalprice", FloatType(), True),
-    StructField("listtime", TimestampType(), True)])
+    StructField("listtime", StringType(), True)])
 
 sales_schema = StructType([
     StructField("salesid", IntegerType(), True),

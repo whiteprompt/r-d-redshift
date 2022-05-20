@@ -31,7 +31,6 @@
         "starttime": {
             "$id": "#/properties/starttime",
             "type": "string",
-            "format": "date-time",
             "title": "The starttime schema field."
         }
     }
