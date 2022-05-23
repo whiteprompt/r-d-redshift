@@ -1,0 +1,17 @@
+[
+    {
+        "action_on_failure": "CONTINUE",
+        "hadoop_jar_step": {
+            "jar": "command-runner.jar",
+            "args": [
+                "spark-submit",
+                "/home/hadoop/r-d-redshift/app/process_data.py",
+                "-r",
+                "s3://wp-lakehouse/raw/",
+                "-t",
+                "s3://wp-lakehouse/trusted/"
+            ]
+        },
+        "name": "Process Tickit data - Raw to Trusted."
+    }
+]

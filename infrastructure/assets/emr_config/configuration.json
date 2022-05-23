@@ -1,0 +1,36 @@
+[
+    {
+        "Classification": "spark",
+        "Properties": {
+            "maximizeResourceAllocation": "true"
+        }
+    },
+    {
+        "Classification": "spark-defaults",
+        "Properties": {
+            "maximizeResourceAllocation": "true",
+            "spark.network.timeout": "400s",
+            "spark.eventLog.enabled": "false",
+            "spark.history.fs.cleaner.enabled": "true",
+            "spark.history.fs.cleaner.interval": "3h",
+            "spark.history.fs.cleaner.maxAge": "3d",
+            "spark.shuffle.spill.compress": "true",
+            "spark.shuffle.compress": "true",
+            "spark.task.maxFailures": "10",
+            "spark.executor.heartbeatInterval": "30s",
+            "spark.yarn.am.attemptFailuresValidityInterval": "300s",
+            "spark.yarn.executor.failuresValidityInterval": "300s",
+            "spark.yarn.maxAppAttempts": "10",
+            "spark.yarn.max.executor.failures": "10",
+            "spark.sql.adaptive.enabled": "true",
+            "spark.debug.maxToStringFields": "200",
+            "fs.s3a.acl.default": "BucketOwnerFullControl"
+        }
+    },
+    {
+        "Classification": "spark-hive-site",
+        "Properties": {
+            "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+        }
+    }
+]
