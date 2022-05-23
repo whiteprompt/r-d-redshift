@@ -1,0 +1,3 @@
+setuptools
+wheel
+awswrangler==2.15.1

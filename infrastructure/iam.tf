@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "redshift_role_policy" {
   statement {
     effect = "Allow"
     actions = [
-      "glue:GetTable"
+      "glue:*"
     ]
     resources = [
       "*"
@@ -37,8 +37,7 @@ data "aws_iam_policy_document" "redshift_role_policy" {
   statement {
     effect = "Allow"
     actions = [
-      "s3:Get*",
-      "s3:List*"
+      "s3:*"
     ]
     resources = [
       "arn:aws:s3:::${var.s3_bucket_name}/*"

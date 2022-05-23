@@ -1,12 +1,8 @@
-import boto3
-import sys
 import argparse
-import utils
 import pyspark.sql.functions as F
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType, BooleanType
 from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
-from distutils.util import strtobool
 import awswrangler as wr
 from utils import Logger
 from datetime import datetime
@@ -14,8 +10,6 @@ from datetime import datetime
 sc = SparkContext.getOrCreate()
 spark = SparkSession.builder.master("yarn").getOrCreate()
 log = Logger()
-s3 = boto3.client('s3')
-s3_resource = boto3.resource('s3')
 
 # Schema definitions
 category_schema = StructType([
@@ -139,96 +133,6 @@ def process_data(raw_path, trusted_path):
         log.error(f"Fail to process data from '{raw_path}' to '{trusted_path}': {str(e)}")
 
 
-def load_redshift_spectrum():
-    try:
-        con = wr.redshift.connect(connection="wp-lakehouse-redshift")
-        cmd_external_schema = """
-        create external schema wp_spectrum
-        from data catalog
-        database 'wp_trusted_redshift'
-        iam_role 'arn:aws:iam::930170203968:role/wp-lakehouse-spectrum-poc-redshift-role'
-        """
-        query_tickit_sales_by_category = f"""
-        CREATE TABLE public.tickit_sales_by_category AS (WITH cat AS (
-        SELECT DISTINCT e.eventid,
-            c.catgroup,
-            c.catname
-        FROM wp_spectrum.event AS e
-            LEFT JOIN wp_spectrum.category AS c ON c.catid = e.catid
-    )
-    SELECT cast(d.caldate AS DATE) AS caldate,
-        s.pricepaid,
-        s.qtysold,
-        round(cast(s.pricepaid AS DECIMAL(8,2)) * s.qtysold, 2) AS sale_amount,
-        cast(s.commission AS DECIMAL(8,2)) AS commission,
-        round((cast(s.commission AS DECIMAL(8,2)) / (cast(s.pricepaid AS DECIMAL(8,2)) * s.qtysold)) * 100, 2) AS commission_prcnt,
-        e.eventname,
-        concat(u1.firstname, ' ', u1.lastname) AS seller,
-        concat(u2.firstname, ' ', u2.lastname) AS buyer,
-        c.catname,
-        c.catgroup,
-        c.catname
-    FROM wp_spectrum.sales AS s
-        LEFT JOIN wp_spectrum.listing AS l ON l.listid = s.listid
-        LEFT JOIN wp_spectrum.user AS u1 ON u1.userid = s.sellerid
-        LEFT JOIN wp_spectrum.user AS u2 ON u2.userid = s.buyerid
-        LEFT JOIN wp_spectrum.event AS e ON e.eventid = s.eventid
-        LEFT JOIN wp_spectrum.tbldate AS d ON d.dateid = s.dateid
-        LEFT JOIN cat AS c ON c.eventid = s.eventid)
-        """
-
-        query_tickit_sales_by_date = f"""
-        CREATE TABLE public.tickit_sales_by_date AS (WITH cat AS (
-        SELECT DISTINCT e.eventid,
-            c.catgroup,
-            c.catname
-        FROM wp_spectrum.event AS e
-            LEFT JOIN wp_spectrum.category AS c ON c.catid = e.catid
-    )
-    SELECT cast(d.caldate AS DATE) AS caldate,
-        s.pricepaid,
-        s.qtysold,
-        round(cast(s.pricepaid AS DECIMAL(8,2)) * s.qtysold, 2) AS sale_amount,
-        cast(s.commission AS DECIMAL(8,2)) AS commission,
-        round((cast(s.commission AS DECIMAL(8,2)) / (cast(s.pricepaid AS DECIMAL(8,2)) * s.qtysold)) * 100, 2) AS commission_prcnt,
-        e.eventname,
-        concat(u1.firstname, ' ', u1.lastname) AS seller,
-        concat(u2.firstname, ' ', u2.lastname) AS buyer,
-        c.catgroup,
-        c.catname,
-        d.month,
-        d.year,
-        d.month
-    FROM wp_spectrum.sales AS s
-        LEFT JOIN wp_spectrum.listing AS l ON l.listid = s.listid
-        LEFT JOIN wp_spectrum.users AS u1 ON u1.userid = s.sellerid
-        LEFT JOIN wp_spectrum.users AS u2 ON u2.userid = s.buyerid
-        LEFT JOIN wp_spectrum.event AS e ON e.eventid = s.eventid
-        LEFT JOIN wp_spectrum.tbldate AS d ON d.dateid = s.dateid
-        LEFT JOIN cat AS c ON c.eventid = s.eventid;)
-        """
-        
-        with con.cursor() as cursor:
-            cursor.execute(cmd_external_schema)
-            cursor.execute(query_tickit_sales_by_category)
-            cursor.execute(query_tickit_sales_by_date)
-        con.close()
-    
-    except Exception as e:
-        log.error(f"Fail to load data into Redshift Spectrum': {str(e)}")
-
-
-def main(raw_path, trusted_path, redshift_load):
-    if redshift_load:
-        log.info("Beginning data processing from raw to trusted.")
-        process_data(raw_path, trusted_path)
-        log.info("Loading Redshift Spectrum tables.")
-        load_redshift_spectrum()
-    else:
-        process_data(raw_path, trusted_path)
-
-
-
 if __name__ == '__main__':
     app_parser = argparse.ArgumentParser(allow_abbrev=False)
     app_parser.add_argument('-r', '--raw',
@@ -243,13 +147,7 @@ if __name__ == '__main__':
                             required=True,
                             dest='trusted_opt',
                             help='Set the trusted path to write to.')     
-    app_parser.add_argument('-rs', '--redshift',
-                            action='store',
-                            type=strtobool,
-                            default=True,
-                            dest='redshift_opt',
-                            help='(Optional) Configure Redshift Spectrum to query data from S3 (default: true).')                    
-
+                 
     args = app_parser.parse_args()
     log.info(f"Started processing of trusted data'.")
-    main(args.raw_opt, args.trusted_opt, args.redshift_opt)
+    process_data(args.raw_opt, args.trusted_opt)
