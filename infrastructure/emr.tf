@@ -3,7 +3,7 @@ resource "aws_emr_cluster" "cluster" {
   release_label  = "${var.emr_release_label}"
   applications   = "${var.emr_cluster_applications}"
   termination_protection = false
-  configurations_json = file(var.configurations_json)
+  configurations_json = file(var.emr_configurations_json)
   log_uri      = "${var.emr_log_uri}"
   service_role = "${var.emr_service_role}"
   
